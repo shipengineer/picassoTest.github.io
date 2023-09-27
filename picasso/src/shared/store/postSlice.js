@@ -1,15 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+// import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  userId: 0,
-  id: 0,
-  title: "",
-  body: "",
-};
+// const initialState = {
+//   userId: 0,
+//   id: 0,
+//   title: "",
+//   body: "",
+// };
 
-const postSlice = createSlice({
-  name: "post",
-  initialState,
-});
+// const postSlice = createSlice({
+//   name: "post",
+//   initialState,
+// });
 
-export default postSlice;
+// export default postSlice;
