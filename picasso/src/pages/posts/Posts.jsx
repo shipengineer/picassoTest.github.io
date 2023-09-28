@@ -39,7 +39,7 @@ const Posts = () => {
           <span className={styles.span}>{elem.id}</span>
           <h3 className={styles.h3}>{elem.title}</h3>
           <p className={styles.p}> {elem.body} </p>
-          <Link to={`/posts/${elem.id}`} className={styles.link}>Подробнее</Link>
+          <Link to={`/picassoTest.github.io/posts/${elem.id}`} className={styles.link}>Подробнее</Link>
           <h4 className={styles.h4}>{elem.userId}</h4>
           
           </section>;
