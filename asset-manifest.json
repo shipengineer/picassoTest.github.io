@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/shipengineer/picassoTest.github.io.git/static/css/main.d8a93112.css",
+    "main.js": "/shipengineer/picassoTest.github.io.git/static/js/main.86c528b5.js",
+    "static/js/787.7d7f8ee1.chunk.js": "/shipengineer/picassoTest.github.io.git/static/js/787.7d7f8ee1.chunk.js",
+    "index.html": "/shipengineer/picassoTest.github.io.git/index.html",
+    "main.d8a93112.css.map": "/shipengineer/picassoTest.github.io.git/static/css/main.d8a93112.css.map",
+    "main.86c528b5.js.map": "/shipengineer/picassoTest.github.io.git/static/js/main.86c528b5.js.map",
+    "787.7d7f8ee1.chunk.js.map": "/shipengineer/picassoTest.github.io.git/static/js/787.7d7f8ee1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d8a93112.css",
+    "static/js/main.86c528b5.js"
+  ]
+}
