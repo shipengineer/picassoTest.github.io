@@ -6,23 +6,10 @@ export const api = createApi({
     baseUrl: 'https://jsonplaceholder.typicode.com',
   }),
   endpoints: (build) => ({
-    firstFetch: build.query({
-      query: () => `/posts?_limit=20`,
-
-      // transformResponse: (response) => {
-      //   const newResponce = [];
-      //   newResponce.push(...response);
-      //   console.log(newResponce);
-      //   return newResponce;
-      // },
-    }),
+    
     getPosts: build.query({
-      query: (postNumber) => `/posts/${postNumber}`,
-      transformResponse: (response) => {
-        const newResponce = [];
-        newResponce.concat(response);
-        return newResponce;
-      },
+      query: (pageNumber) => `/posts?_page=${pageNumber}`,
+      
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
@@ -38,4 +25,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetPostsQuery, useFirstFetchQuery } = api;
+export const { useGetPostsQuery} = api;

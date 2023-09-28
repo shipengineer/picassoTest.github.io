@@ -1,43 +1,40 @@
 import { useEffect, useState, useLayoutEffect } from 'react';
-import { useFirstFetchQuery, useGetPostsQuery } from '../../shared/api/api';
+import { useGetPostsQuery } from '../../shared/api/api';
 
 const Posts = () => {
-  const [postId, setPostId] = useState(21);
   const [page, setPage] = useState(1);
-  const { currentData, isSuccess } = useFirstFetchQuery();
-  const { data, isFetching, isLoading } = useGetPostsQuery(postId);
-  const [post, setPost] = useState([]);
-  useEffect(() => {
-    if (isSuccess) {
-      setPost((oldPost) => [oldPost, ...currentData]);
-    }
-  }, [isSuccess]);
+  const { data,  isFetching } = useGetPostsQuery(page);
+  const post = data ?? [];
+ 
 
   useEffect(() => {
     const onScroll = () => {
       const scrolledToBottom =
         window.innerHeight + window.scrollY >= document.body.offsetHeight;
       if (scrolledToBottom && !isFetching) {
-        console.log('Fetching more data...');
-        console.log(data);
-        setPost((oldPost) => oldPost.concat(data));
-        setPostId(postId + 1);
+        console.log("Fetching more data...");
+        setPage(page + 1);
       }
     };
 
-    document.addEventListener('scroll', onScroll);
+    document.addEventListener("scroll", onScroll);
 
     return function () {
-      document.removeEventListener('scroll', onScroll);
+      document.removeEventListener("scroll", onScroll);
     };
-  }, [postId]);
+  }, [page, isFetching]);
 
   return (
     <>
       <h1>RTK Query infinite scroll</h1>
       <h2>Scroll down to automatically trigger the fetch of more data.</h2>
       {post.map(function (elem, i) {
-        return <div key={i}>{elem.body}</div>;
+        return <section key={i} >
+          <span>{elem.id}</span>
+          <h3>{elem.userId}</h3>
+          <h4> {elem.title} </h4>
+          <span> {elem.body} </span>
+          </section>;
       })}
     </>
   );
