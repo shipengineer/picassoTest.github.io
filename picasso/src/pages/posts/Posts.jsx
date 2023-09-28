@@ -1,8 +1,13 @@
-import { useEffect, useState, useLayoutEffect } from 'react';
+import { useEffect} from 'react';
 import { useGetPostsQuery } from '../../shared/api/api';
+import { Link} from 'react-router-dom';
+import styles from './post.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import pageSlice from '../../shared/store/pageSlice';
 
 const Posts = () => {
-  const [page, setPage] = useState(1);
+  const page =useSelector((state)=>state.pageSlice);
+  const dispatch = useDispatch()
   const { data,  isFetching } = useGetPostsQuery(page);
   const post = data ?? [];
  
@@ -12,8 +17,10 @@ const Posts = () => {
       const scrolledToBottom =
         window.innerHeight + window.scrollY >= document.body.offsetHeight;
       if (scrolledToBottom && !isFetching) {
-        console.log("Fetching more data...");
-        setPage(page + 1);
+        console.log("Fetching additional data...");
+        dispatch(pageSlice.actions.increment())
+        // dispatch(pageSlice.actions.increment)
+        // setPage(page + 1);
       }
     };
 
@@ -22,18 +29,19 @@ const Posts = () => {
     return function () {
       document.removeEventListener("scroll", onScroll);
     };
-  }, [page, isFetching]);
+  }, [page, isFetching,dispatch]);
 
   return (
     <>
-      <h1>RTK Query infinite scroll</h1>
-      <h2>Scroll down to automatically trigger the fetch of more data.</h2>
+      
       {post.map(function (elem, i) {
-        return <section key={i} >
-          <span>{elem.id}</span>
-          <h3>{elem.userId}</h3>
-          <h4> {elem.title} </h4>
-          <span> {elem.body} </span>
+        return <section key={i} className={styles.section}>
+          <span className={styles.span}>{elem.id}</span>
+          <h3 className={styles.h3}>{elem.title}</h3>
+          <p className={styles.p}> {elem.body} </p>
+          <Link to={`/posts/${elem.id}`} className={styles.link}>Подробнее</Link>
+          <h4 className={styles.h4}>{elem.userId}</h4>
+          
           </section>;
       })}
     </>

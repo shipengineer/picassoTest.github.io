@@ -1,15 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
-  reducerPath: 'api',
+  reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://jsonplaceholder.typicode.com',
+    baseUrl: "https://jsonplaceholder.typicode.com",
   }),
   endpoints: (build) => ({
-    
     getPosts: build.query({
       query: (pageNumber) => `/posts?_page=${pageNumber}`,
-      
+
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
@@ -22,7 +21,10 @@ export const api = createApi({
         return currentArg !== previousArg;
       },
     }),
+    getPostById: build.query({
+      query: (postId) => `/posts/${postId}`,
+    }),
   }),
 });
 
-export const { useGetPostsQuery} = api;
+export const { useGetPostsQuery, useGetPostByIdQuery } = api;
