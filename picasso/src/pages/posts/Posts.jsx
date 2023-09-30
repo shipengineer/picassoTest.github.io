@@ -15,7 +15,7 @@ const Posts = () => {
   useEffect(() => {
     const onScroll = () => {
       const scrolledToBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight;
+        window.innerHeight + window.scrollY*1.1 >= document.body.offsetHeight;
       if (scrolledToBottom && !isFetching) {
         console.log("Fetching additional data...");
         dispatch(pageSlice.actions.increment())
